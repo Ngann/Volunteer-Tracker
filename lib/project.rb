@@ -37,4 +37,15 @@ class Project
       return Project.new({:title => title, :id => id})
     end
   end
+
+  def update(attributes)
+    @title = attributes.fetch(:title)
+    @id = self.id()
+    return DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+  end
+
+  def delete
+    returned_projects = DB.exec("DELETE FROM projects WHERE id = #{self.id()};")
+  end
+
 end
