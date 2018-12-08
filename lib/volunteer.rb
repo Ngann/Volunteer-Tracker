@@ -9,4 +9,8 @@ class  Volunteer
     @project_id = attributes.fetch(:project_id)
     @id = attributes.fetch(:id)
   end
+
+  def ==(another_volunteer)
+    self.name().==(another_volunteer.name()).&(self.id().==(another_volunteer.id()))
+  end
 end
