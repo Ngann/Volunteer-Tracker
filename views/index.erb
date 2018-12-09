@@ -1,0 +1,28 @@
+<h3>Here are all the volunteers in this database:</h3>
+
+<% if @volunteers.any?() %>
+  <p>Click on an volunteer to see information about them and mark which projects they were in:</p>
+
+  <ul>
+    <% @volunteers.each do |volunteer| %>
+      <li><a href="/volunteers/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no volunteers added yet!</p>
+<% end %>
+
+
+<h3>Here are all the projects in this database:</h3>
+
+<% if @projects.any?() %>
+  <p>Click on a project to see information about it and mark which volunteers were in it:</p>
+
+  <ul>
+    <% @projects.each do |project| %>
+      <li><a href="/projects/<%= project.id() %>"><%= project.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no projects added yet!</p>
+<% end %>
