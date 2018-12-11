@@ -1,10 +1,10 @@
-<h1>Welcome to the volunteers page</h1>
+<h1>Welcome to the Project's page</h1>
 
 <p>Add an project to the database:</p>
 
 <form action="/projects" method="post">
-  <label for="name">Project's name:</label>
-  <input id="name" name="name" type="text">
+  <label for="title">Project's title:</label>
+  <input id="title" name="title" type="text">
 
   <button type="submit">Add project</button>
 </form>
@@ -12,23 +12,21 @@
 <h3>Here are all the projects in this database:</h3>
 
 <% if @projects.any?() %>
-  <p>Click on a project to see information about it and mark which volunteers were in it:</p>
+  <p>Click on an project to see information about them and see which volunteers are assigned to them:</p>
 
   <ul>
     <% @projects.each do |project| %>
-      <li><a href="/projects/<%= project.id() %>"><%= project.name() %></a></li>
+      <li><a href="/projects/<%= project.id() %>"><%= project.title() %></a></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are no projects added yet!</p>
 <% end %>
 
-<h1>Welcome to the volunteers page</h1>
-
 <p>Add an volunteer to the database:</p>
 
 <form action="/volunteers" method="post">
-  <label for="name">volunteers's name:</label>
+  <label for="name">Volunteers's name:</label>
   <input id="name" name="name" type="text">
 
   <button type="submit">Add volunteer</button>
@@ -38,7 +36,7 @@
 <h3>Here are all the volunteers in this database:</h3>
 
 <% if @volunteers.any?() %>
-  <p>Click on an volunteer to see information about them and mark which projects they were in:</p>
+  <p>Click on an volunteer to see information about them and add them to projects:</p>
 
   <ul>
     <% @volunteers.each do |volunteer| %>
