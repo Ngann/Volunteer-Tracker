@@ -1,17 +1,13 @@
-<h3>Here are all the volunteers in this database:</h3>
+<h1>Welcome to the volunteers page</h1>
 
-<% if @volunteers.any?() %>
-  <p>Click on an volunteer to see information about them and mark which projects they were in:</p>
+<p>Add an project to the database:</p>
 
-  <ul>
-    <% @volunteers.each do |volunteer| %>
-      <li><a href="/volunteers/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no volunteers added yet!</p>
-<% end %>
+<form action="/projects" method="post">
+  <label for="name">Project's name:</label>
+  <input id="name" name="name" type="text">
 
+  <button type="submit">Add project</button>
+</form>
 
 <h3>Here are all the projects in this database:</h3>
 
@@ -25,4 +21,30 @@
   </ul>
 <% else %>
   <p>There are no projects added yet!</p>
+<% end %>
+
+<h1>Welcome to the volunteers page</h1>
+
+<p>Add an volunteer to the database:</p>
+
+<form action="/volunteers" method="post">
+  <label for="name">volunteers's name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add volunteer</button>
+</form>
+
+
+<h3>Here are all the volunteers in this database:</h3>
+
+<% if @volunteers.any?() %>
+  <p>Click on an volunteer to see information about them and mark which projects they were in:</p>
+
+  <ul>
+    <% @volunteers.each do |volunteer| %>
+      <li><a href="/volunteers/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no volunteers added yet!</p>
 <% end %>

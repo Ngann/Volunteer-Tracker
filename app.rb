@@ -7,7 +7,6 @@ require("pg")
 
 DB = PG.connect({:dbname => "volunteer_tracker"})
 
-
 get("/") do
  @volunteers = Volunteer.all()
  @projects = Project.all()

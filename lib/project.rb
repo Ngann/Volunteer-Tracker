@@ -1,5 +1,3 @@
-require ('spec_helper')
-
 class Project
   attr_accessor(:title)
   attr_reader(:id)

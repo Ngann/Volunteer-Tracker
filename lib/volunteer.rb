@@ -1,6 +1,4 @@
-require ('spec_helper')
-
-class  Volunteer
+class Volunteer
   attr_accessor(:name, :project_id)
   attr_reader(:id)
 
@@ -40,6 +38,5 @@ class  Volunteer
       return( Volunteer.new({:name => name, :project_id => project_id, :id => id}))
     end
   end
-
 
 end
