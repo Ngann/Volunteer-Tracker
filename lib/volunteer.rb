@@ -40,8 +40,9 @@ class Volunteer
   end
 
   def update(attributes)
+    @name = attributes.fetch(:name)
     @id = self.id()
-    DB.exec("UPDATE lists SET project_id = #{attributes} WHERE id = #{@id};")
+    DB.exec("UPDATE lists SET name = '#{@name}' WHERE id = #{@id};")
   end
 
 end

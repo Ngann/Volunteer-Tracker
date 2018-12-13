@@ -4,7 +4,7 @@
 
 ## Description
 
-_The program is allows users to enter projects and volunteers. _
+_The program is allows users to enter projects and volunteers._
 
 ## Setup/Installation Requirements
 
@@ -33,6 +33,3 @@ _Sinatra_
 *This software is licensed under the MIT license.*
 
 Copyright (c) 2018 **_Ngan Nguyen_**
-
-
-# README
