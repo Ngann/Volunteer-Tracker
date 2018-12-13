@@ -39,4 +39,9 @@ class Volunteer
     end
   end
 
+  def update(attributes)
+    @id = self.id()
+    DB.exec("UPDATE lists SET project_id = #{attributes} WHERE id = #{@id};")
+  end
+
 end

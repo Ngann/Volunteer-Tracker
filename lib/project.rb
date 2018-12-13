@@ -46,28 +46,16 @@ class Project
     end
   end
 
-  # def volunteers
-  # project_volunteers = []
-  # results = DB.exec("SELECT volunteer_id FROM volunteers_projects WHERE project_id = #{self.id()};")
-  #   results.each() do |result|
-  #     volunteer_id = result.fetch("volunteer_id").to_i()
-  #     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{volunteer_id};")
-  #     name = volunteer.first().fetch("name")
-  #     project_volunteers.push(Volunteer.new({:name => name, :id => volunteer_id}))
-  #   end
-  #   project_volunteers
-  # end
-
   def volunteers
     results = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id()};")
-    volunteers = []
+    returned_volunteers = []
     results.each do |result|
       name = result.fetch('name')
       project_id = result.fetch('project_id').to_i()
       id = result.fetch('id').to_i()
       volunteers.push(Volunteer.new({:name => name , :project_id => project_id, :id => id}))
     end
-    volunteers
+    returned_volunteers
   end
 
 

@@ -1,3 +1,18 @@
+<h3><%= @project.title %></h3>
 
+
+<form action="/volunteers/<%= @project.id%>/edit" method="post">
+  <h3><label for="name">Available Volunteers</label></h3>
+
+  <% @volunteers.each do |volunteer| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="volunteer_ids[]" value="<%=volunteer.id%>"><%= volunteer.name() %>
+    </label>
+  </div>
+  <% end %>
+
+  <button type="submit">Add volunteer</button>
+</form>
 
 <a href="/">Return to Main Page</a>

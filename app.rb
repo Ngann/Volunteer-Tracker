@@ -29,6 +29,7 @@ post ("/volunteers") do
 end
 
 get("/volunteers/:id") do
+  @volunteer = Volunteer.find(params[:id].to_i)
   @volunteers = Volunteer.all()
   @projects = Project.all()
   erb(:volunteer_info)
@@ -50,7 +51,18 @@ post("/projects") do
 end
 
 get("/projects/:id") do
+  @project = Project.find(params[:id].to_i)
   @projects = Project.all()
   @volunteers = Volunteer.all()
   erb(:project_info)
+end
+
+post("/volunteers/:id/edit") do
+  project = Project.find(params[:id].to_i)
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.update(project)
+  @add_volunteer =
+  @projects = Project.all()
+  @volunteers = Volunteer.all()
+  erb(:project_edit)
 end
