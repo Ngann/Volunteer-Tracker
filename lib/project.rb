@@ -53,7 +53,7 @@ class Project
       name = result.fetch('name')
       project_id = result.fetch('project_id').to_i()
       id = result.fetch('id').to_i()
-      volunteers.push(Volunteer.new({:name => name , :project_id => project_id, :id => id}))
+      returned_volunteers.push(Volunteer.new({:name => name , :project_id => project_id, :id => id}))
     end
     returned_volunteers
   end
