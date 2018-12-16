@@ -38,8 +38,8 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.projects (
-    title character varying,
-    id integer NOT NULL
+    id integer NOT NULL,
+    title character varying
 );
 
 
@@ -72,9 +72,9 @@ ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
 --
 
 CREATE TABLE public.volunteers (
-    name character varying,
+    id integer NOT NULL,
     project_id integer NOT NULL,
-    id integer NOT NULL
+    name character varying
 );
 
 
@@ -125,73 +125,10 @@ ALTER SEQUENCE public.volunteers_project_id_seq OWNED BY public.volunteers.proje
 
 
 --
--- Name: volunteers_projects; Type: TABLE; Schema: public; Owner: cereal
---
-
-CREATE TABLE public.volunteers_projects (
-    volunteer_id integer NOT NULL,
-    project_id integer NOT NULL
-);
-
-
-ALTER TABLE public.volunteers_projects OWNER TO cereal;
-
---
--- Name: volunteers_projects_project_id_seq; Type: SEQUENCE; Schema: public; Owner: cereal
---
-
-CREATE SEQUENCE public.volunteers_projects_project_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.volunteers_projects_project_id_seq OWNER TO cereal;
-
---
--- Name: volunteers_projects_project_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cereal
---
-
-ALTER SEQUENCE public.volunteers_projects_project_id_seq OWNED BY public.volunteers_projects.project_id;
-
-
---
--- Name: volunteers_projects_volunteer_id_seq; Type: SEQUENCE; Schema: public; Owner: cereal
---
-
-CREATE SEQUENCE public.volunteers_projects_volunteer_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.volunteers_projects_volunteer_id_seq OWNER TO cereal;
-
---
--- Name: volunteers_projects_volunteer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cereal
---
-
-ALTER SEQUENCE public.volunteers_projects_volunteer_id_seq OWNED BY public.volunteers_projects.volunteer_id;
-
-
---
 -- Name: projects id; Type: DEFAULT; Schema: public; Owner: cereal
 --
 
 ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
-
-
---
--- Name: volunteers project_id; Type: DEFAULT; Schema: public; Owner: cereal
---
-
-ALTER TABLE ONLY public.volunteers ALTER COLUMN project_id SET DEFAULT nextval('public.volunteers_project_id_seq'::regclass);
 
 
 --
@@ -202,31 +139,25 @@ ALTER TABLE ONLY public.volunteers ALTER COLUMN id SET DEFAULT nextval('public.v
 
 
 --
--- Name: volunteers_projects volunteer_id; Type: DEFAULT; Schema: public; Owner: cereal
+-- Name: volunteers project_id; Type: DEFAULT; Schema: public; Owner: cereal
 --
 
-ALTER TABLE ONLY public.volunteers_projects ALTER COLUMN volunteer_id SET DEFAULT nextval('public.volunteers_projects_volunteer_id_seq'::regclass);
-
-
---
--- Name: volunteers_projects project_id; Type: DEFAULT; Schema: public; Owner: cereal
---
-
-ALTER TABLE ONLY public.volunteers_projects ALTER COLUMN project_id SET DEFAULT nextval('public.volunteers_projects_project_id_seq'::regclass);
+ALTER TABLE ONLY public.volunteers ALTER COLUMN project_id SET DEFAULT nextval('public.volunteers_project_id_seq'::regclass);
 
 
 --
 -- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: cereal
 --
 
-COPY public.projects (title, id) FROM stdin;
-Colorless	13
-Colorless	14
-Colorless	15
-Colorless	16
-Colorless	17
-Colorless	18
-Colorless	19
+COPY public.projects (id, title) FROM stdin;
+183	 VOLUNTEER WITH ELEPHANTS IN THAILAND
+184	CONTRIBUTE TO SHARK AND TURTLE CONSERVATION IN THE SEYCHELLES
+185	TEACH ENGLISH TO BUDDHIST MONKS IN LAOS
+186	PARTICIPATE ON A WILDLIFE RESEARCH EXPEDITION IN SOUTH AFRICA
+187	WORK ON A WOMEN’S EMPOWERMENT PROJECT IN INDIA
+188	CONTRIBUTE TO JAGUAR CONSERVATION IN COSTA RICA
+189	 JOIN A MARINE CONSERVATION EXPEDITION IN MEXICO
+190	WORK ON A COMMUNITY DEVELOPMENT PROJECT IN NEPAL
 \.
 
 
@@ -234,27 +165,17 @@ Colorless	19
 -- Data for Name: volunteers; Type: TABLE DATA; Schema: public; Owner: cereal
 --
 
-COPY public.volunteers (name, project_id, id) FROM stdin;
-Lee	0	9
-Lee	0	10
-Lee	0	11
-Lee	0	12
-Lee	0	13
-Lee	0	14
-Lee	0	15
-Lee	0	16
-Lee	0	17
-Lee	0	18
-Lee	0	19
-Lee	0	20
-\.
-
-
---
--- Data for Name: volunteers_projects; Type: TABLE DATA; Schema: public; Owner: cereal
---
-
-COPY public.volunteers_projects (volunteer_id, project_id) FROM stdin;
+COPY public.volunteers (id, project_id, name) FROM stdin;
+114	183	Robert
+115	183	Daniel
+116	183	Ngan
+117	183	Chris
+118	184	Lee
+119	184	Carol
+120	185	Julie
+121	185	Ann
+122	186	Christine
+123	187	Roger
 \.
 
 
@@ -262,14 +183,14 @@ COPY public.volunteers_projects (volunteer_id, project_id) FROM stdin;
 -- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cereal
 --
 
-SELECT pg_catalog.setval('public.projects_id_seq', 19, true);
+SELECT pg_catalog.setval('public.projects_id_seq', 190, true);
 
 
 --
 -- Name: volunteers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cereal
 --
 
-SELECT pg_catalog.setval('public.volunteers_id_seq', 20, true);
+SELECT pg_catalog.setval('public.volunteers_id_seq', 123, true);
 
 
 --
@@ -277,20 +198,6 @@ SELECT pg_catalog.setval('public.volunteers_id_seq', 20, true);
 --
 
 SELECT pg_catalog.setval('public.volunteers_project_id_seq', 1, false);
-
-
---
--- Name: volunteers_projects_project_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cereal
---
-
-SELECT pg_catalog.setval('public.volunteers_projects_project_id_seq', 1, false);
-
-
---
--- Name: volunteers_projects_volunteer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cereal
---
-
-SELECT pg_catalog.setval('public.volunteers_projects_volunteer_id_seq', 1, false);
 
 
 --
