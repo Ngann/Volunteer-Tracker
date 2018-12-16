@@ -4,6 +4,9 @@ also_reload("lib/**/*.rb")
 require("./lib/volunteer")
 require("./lib/project")
 require("pg")
+require("pry")
+
+
 
 DB = PG.connect({:dbname => "volunteer_tracker"})
 
@@ -58,11 +61,10 @@ get("/projects/:id") do
 end
 
 post("/volunteers/:id/edit") do
-  project = Project.find(params[:id].to_i)
-  @volunteer = Volunteer.find(params[:id].to_i)
-  @volunteer.update(project)
-  @add_volunteer =
+  @project = Project.find(params[:id].to_i)
+  @project_volunteers = @project.volunteers
   @projects = Project.all()
   @volunteers = Volunteer.all()
+  binding.pry
   erb(:project_edit)
 end
