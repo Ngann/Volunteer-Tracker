@@ -23,15 +23,6 @@
   <p>There are no projects added yet!</p>
 <% end %>
 
-<p>Add an volunteer to the database:</p>
-
-<form action="/volunteers" method="post">
-  <label for="name">Volunteers's name:</label>
-  <input id="name" name="name" type="text">
-  <button type="submit">Add volunteer</button>
-</form>
-
-
 <h3>Here are all the volunteers in this database:</h3>
 
 <% if @volunteers.any?() %>
@@ -45,3 +36,11 @@
 <% else %>
   <p>There are no volunteers added yet!</p>
 <% end %>
+
+<p>Add an volunteer to the database:</p>
+
+<form action="/volunteers" method="post">
+  <label for="name">Volunteers's name:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add volunteer</button>
+</form>

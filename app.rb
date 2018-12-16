@@ -82,12 +82,33 @@ delete("/projects/:id/edit") do
   erb(:index)
 end
 
-post("/volunteers/:id/edit") do
-
-  @project = Project.find(params[:id].to_i)
-  @project_volunteers = @project.volunteers
+delete("/projects/:id/add") do
+  @project = Project.find(params.fetch("id").to_i())
+  @project.delete()
   @projects = Project.all()
   @volunteers = Volunteer.all()
-  binding.pry
-  erb(:project_edit)
+  erb(:index)
+end
+
+
+# post("/volunteers/:id/edit") do
+#   @project_id = Project.find(params[:id].to_i)
+#   @volunteer = Volunteer.find(params[:id].to_i)
+#   @volunteer.update({:project_id => @project_id})
+#   binding.pry
+#   @project_volunteers = @project.volunteers
+#   @projects = Project.all()
+#   @volunteers = Volunteer.all()
+#   erb(:project_edit)
+# end
+
+patch("/volunteers/:id/edit") do
+  name = params.fetch("name")
+  project_id = params.fetch("project_id")
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.update({:project_id => project_id, :name => name})
+  @volunteers = Volunteer.all()
+  @project = Project.find(params[:id].to_i)
+  @projects = Project.all()
+  erb(:index)
 end

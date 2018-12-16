@@ -2,18 +2,19 @@
 
 <a href="/projects/<%= @project.id%>/edit">Edit Project</a>
 
-<form action="/volunteers/<%= @project.id%>/edit" method="post">
-  <h3><label for="name">Available Volunteers</label></h3>
 
-  <% @volunteers.each do |volunteer| %>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="volunteer_ids[]" value="<%=volunteer.id%>"><%= volunteer.name() %>
-    </label>
-  </div>
-  <% end %>
+<% if @project.volunteers().any?() %>
 
-  <button type="submit">Add volunteer</button>
-</form>
+  <h3>Here are all the volunteers in this project:</h3>
+
+  <ul>
+    <% @project.volunteers().each() do |volunteer| %>
+        <li><a href="/volunteers/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no volunteers for this project!</p>
+<% end %>
+
 
 <a href="/">Return to Main Page</a>
