@@ -74,6 +74,14 @@ patch("/projects/:id/edit") do
   erb(:project_info)
 end
 
+delete("/projects/:id/edit") do
+  @project = Project.find(params.fetch("id").to_i())
+  @project.delete()
+  @projects = Project.all()
+  @volunteers = Volunteer.all()
+  erb(:index)
+end
+
 post("/volunteers/:id/edit") do
 
   @project = Project.find(params[:id].to_i)

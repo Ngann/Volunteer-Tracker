@@ -7,4 +7,10 @@
  <button type="submit">Update Project</button>
 </form>
 
+<form action="/projects/<%= @project.id%>/edit" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Project</button>
+</form>
+
 <a href="/">Return to Main Page</a>
