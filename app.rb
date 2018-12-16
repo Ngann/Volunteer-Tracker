@@ -60,7 +60,22 @@ get("/projects/:id") do
   erb(:project_info)
 end
 
+get("/projects/:id/edit") do
+  @project = Project.find(params[:id].to_i)
+  erb(:project_edit)
+end
+
+patch("/projects/:id/edit") do
+  title = params.fetch("title")
+  @project = Project.find(params[:id].to_i)
+  @project.update({:title => title})
+  @projects = Project.all()
+  @volunteers = Volunteer.all()
+  erb(:project_info)
+end
+
 post("/volunteers/:id/edit") do
+
   @project = Project.find(params[:id].to_i)
   @project_volunteers = @project.volunteers
   @projects = Project.all()

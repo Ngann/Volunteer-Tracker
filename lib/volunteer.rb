@@ -46,4 +46,8 @@ class Volunteer
     DB.exec("UPDATE lists SET name = '#{@name}' project_id = #{@project_id} WHERE id = #{@id};")
   end
 
+  def delete
+    DB.exec("DELETE FROM volunteers WHERE id = #{self.id()};")
+  end
+
 end

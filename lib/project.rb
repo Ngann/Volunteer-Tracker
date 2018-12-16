@@ -37,13 +37,9 @@ class Project
   end
 
   def update(attributes)
-    @title = attributes.fetch(:title, @title)
+    @title = attributes.fetch(:title)
     @id = self.id()
     DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
-
-      attributes.fetch(:volunteer_ids, []).each() do |volunteer_id|
-      DB.exec("INSERT INTO volunteers_projects (volunteer_id, project_id) VALUES (#{volunteer_id}, #{@id});")
-    end
   end
 
   def volunteers
