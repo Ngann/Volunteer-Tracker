@@ -3,7 +3,14 @@
 <form action="/volunteers/<%= @volunteer.id%>/edit" method="post">
   <input name="_method" type="hidden" value="patch">
  <label for="project_id">Add to Project</label>
- <input id="project_id" name="project_id" type="text">
+ <% @projects.each() do |project| %>
+   <div class="checkbox">
+     <label>
+       <input type="checkbox" name="project_id" value="<%= project.id() %>"><%= project.title() %>
+     </label>
+   </div>
+  <% end %>
+
  <label for="name">Update name</label>
  <input id="name" name="name" type="text">
  <button type="submit">Update Volunteer</button>
