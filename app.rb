@@ -92,10 +92,19 @@ end
 
 
 patch("/volunteers/:id/edit") do
-  name = params.fetch("name")
   project_id = params.fetch("project_id")
   @volunteer = Volunteer.find(params[:id].to_i)
-  @volunteer.update({:project_id => project_id, :name => name})
+  @volunteer.update({:project_id => project_id})
+  @volunteers = Volunteer.all()
+  @project = Project.find(params[:id].to_i)
+  @projects = Project.all()
+  erb(:index)
+end
+
+patch("/volunteers/:id/name") do
+  name = params.fetch("name")
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.update({:name => name})
   @volunteers = Volunteer.all()
   @project = Project.find(params[:id].to_i)
   @projects = Project.all()

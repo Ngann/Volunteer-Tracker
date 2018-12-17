@@ -2,17 +2,21 @@
 
 <form action="/volunteers/<%= @volunteer.id%>/edit" method="post">
   <input name="_method" type="hidden" value="patch">
- <label for="project_id">Add to Project</label>
+ <label for="project_id">Update or Add Volunteer to a Project</label>
  <% @projects.each() do |project| %>
    <div class="checkbox">
      <label>
-       <input type="radio" name="project_id" value="<%= project.id() %>"><%= project.title() %>
+       <input type="radio" name="project_id" value="<%= project.id() %>" checked="<%= project.id() %>"><%= project.title() %>
      </label>
    </div>
   <% end %>
+  <button type="submit">Add Volunteer</button>
+ </form>
 
- <label for="name">Update name</label>
- <input id="name" name="name" type="text" value="<%= @volunteer.name%>">
+<form action="/volunteers/<%= @volunteer.id%>/name" method="post">
+  <input name="_method" type="hidden" value="patch">
+ <label for="name">Update Volunteer's Name</label></br>
+ <input id="name" name="name" type="text" value="<%= @volunteer.name%>"></br>
  <button type="submit">Update Volunteer</button>
 </form>
 
