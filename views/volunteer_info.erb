@@ -6,13 +6,13 @@
  <% @projects.each() do |project| %>
    <div class="checkbox">
      <label>
-       <input type="checkbox" name="project_id" value="<%= project.id() %>"><%= project.title() %>
+       <input type="radio" name="project_id" value="<%= project.id() %>"><%= project.title() %>
      </label>
    </div>
   <% end %>
 
  <label for="name">Update name</label>
- <input id="name" name="name" type="text">
+ <input id="name" name="name" type="text" value="<%= @volunteer.name%>">
  <button type="submit">Update Volunteer</button>
 </form>
 
